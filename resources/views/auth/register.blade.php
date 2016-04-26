@@ -1,82 +1,120 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {!! csrf_field() !!}
+    <div class="container">
+        <div class="register-box">
+            <div class="register-logo">
+                <a href="{{ route('index') }}">
+                    <span class="logo-mini">
+                        <img src="{{ asset('images/mobs.png') }}" class="img-responsive">
+                    </span>
+                </a>
+            </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+            <div class="register-box-body">
+                <p class="login-box-msg">Register a new membership</p>
+                <form role="form" method="POST" action="{{ route('register.post') }}">
+                    {!! csrf_field() !!}
 
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                    <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <input type="text" class="form-control" id="name" placeholder="Full name" name="name"
+                               value="{{ old('name') }}">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                    <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <input type="email" class="form-control" name="email"
+                               placeholder="Email" value="{{ old('email') }}">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
+                        @if ($errors->has('email'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+                    <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
+                    </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
+                    <div class="form-group has-feedback{{ $errors->has('password_confirmation')
+                     ? ' has-error' : '' }}">
 
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
+                        <input type="password" class="form-control" name="password_confirmation"
+                               placeholder="Retype password">
+                        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
-                                </button>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox"> I agree to the <a href="#">terms</a>
+                                </label>
+                            </div>
+                        </div><!-- /.col -->
+                        <div class="col-xs-4">
+                            <input type="submit" value="Register" class="btn btn-primary btn-block btn-flat">
+                        </div><!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center">
+                    <p>- OR -</p>
+
+                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                        <i class="fa fa-facebook"></i>Sign up using Facebook</a>
+
+                    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                        <i class="fa fa-google-plus"></i>Sign up using Google+</a>
+                </div>
+
+                <a href="{{ url('login') }}" class="text-center">I already have a membership</a>
+            </div>
+
+            @if($errors->any())
+                <div class="row">
+                    <div class="example-modal">
+                        <div class="modal modal-danger">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Errors!</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            @endif
+
         </div>
     </div>
-</div>
 @endsection
