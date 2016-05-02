@@ -13,7 +13,7 @@
 
             <div class="register-box-body">
                 <p class="login-box-msg">Register a new membership</p>
-                <form role="form" method="POST" action="{{ route('register.post') }}">
+                <form role="form" method="POST" action="{{ url('register') }}">
                     {!! csrf_field() !!}
 
                     <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -92,28 +92,7 @@
                 <a href="{{ url('login') }}" class="text-center">I already have a membership</a>
             </div>
 
-            @if($errors->any())
-                <div class="row">
-                    <div class="example-modal">
-                        <div class="modal modal-danger">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Errors!</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ul>
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
+            @include('errors.list')
 
         </div>
     </div>
