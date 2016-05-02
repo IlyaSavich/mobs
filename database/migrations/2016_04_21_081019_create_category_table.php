@@ -16,8 +16,10 @@ class CreateCategoryTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->unsignedInteger('parent_category_id');
-            $table->foreign('parent_category_id')->references('id')->on('category');
+            $table->unsignedInteger('_lft');
+            $table->unsignedInteger('_rgt');
+            $table->unsignedInteger('parent_id')->nullable();
+            $table->timestamps();
         });
     }
 

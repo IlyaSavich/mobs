@@ -18,6 +18,7 @@ class CreateProductTable extends Migration
             $table->text('description');
             $table->string('price');
             $table->unsignedInteger('quantity');
+            $table->timestamps();
         });
     }
 

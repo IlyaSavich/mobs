@@ -42,13 +42,7 @@
 
     @include('layouts.partials.header')
 
-    @include('layouts.partials.main-menu')
-
-    <div class="content-wrapper">
-        <section class="content">
-            @yield('content')
-        </section>
-    </div>
+    @yield('page')
 
     @include('layouts.partials.footer')
 
