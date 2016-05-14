@@ -13,11 +13,9 @@
                     <h3 class="box-title">Новая категория</h3>
 
                     <div class="box-tools pull-right">
-                        {{--<button class="btn btn-box-tool" data-widget="collapse">--}}
                         <a href="{{ route('category.delete', $category->id) }}">
                             <i title="Удалить" class="fa fa-trash-o"></i>
                         </a>
-                        {{--</button>--}}
                     </div>
                 </div>
 
@@ -35,7 +33,7 @@
                     </div>
                     <div class="input-group input-field{{ $errors->has('parent_id') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        {!! Form::select('parent_id', $categories, $category->parent_category_id,
+                        {!! Form::select('parent_id', $categories, $category->parent_id,
                         ['class' => 'form-control']) !!}
 
                         @if ($errors->has('parent_id'))
@@ -56,7 +54,8 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <a href="#" class="btn btn-default">Отменить</a>
+                    <a href="{{ route('category.list') }}" class="btn btn-default">Отменить</a>
+
                     {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}

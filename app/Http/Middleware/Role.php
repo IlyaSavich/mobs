@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\UserService;
+use App\Repositories\UserRepository;
 use Closure;
 
 class Role
@@ -19,7 +19,7 @@ class Role
      */
     public function handle($request, Closure $next)
     {
-        return UserService::isAdmin() ? $next($request) : response([
+        return UserRepository::isAdmin() ? $next($request) : response([
             'error' => [
                 'code' => 'INSUFFICIENT_ROLE',
                 'description' => 'You are not authorized to access this resource.',

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Admin\Category;
-use App\Services\CategoryService;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,23 +15,23 @@ class CategoryController extends Controller
     /**
      * Variable is used to work with categories
      *
-     * @var CategoryService
+     * @var CategoryRepository
      */
-    protected $categoryService;
+    protected $categoryRepository;
 
     /**
      * Create a new controller instance
      * Only authorized user with admin rights can access resources
-     * Set CategoryService instance for working with category
+     * Set CategoryRepository instance for working with category
      *
-     * @param CategoryService $categoryService
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryRepository $categoryRepository)
     {
         $this->middleware('auth');
         $this->middleware('role');
 
-        $this->categoryService = $categoryService;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        $this->categoryService->store($request);
+        $this->categoryRepository->store($request);
 
         return redirect()->route('category.list');
     }
@@ -93,7 +93,7 @@ class CategoryController extends Controller
      */
     public function update($id, CreateCategoryRequest $request)
     {
-        $this->categoryService->update($id, $request);
+        $this->categoryRepository->update($id, $request);
 
         return redirect()->route('category.list');
     }
@@ -108,7 +108,7 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $this->categoryService->delete($id);
+        $this->categoryRepository->delete($id);
 
         return redirect()->route('category.list');
     }

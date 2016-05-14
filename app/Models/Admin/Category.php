@@ -11,7 +11,11 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $id
  * @property string $title
  * @property string $description
- * @property int $parent_category_id
+ * @property int $parent_id
+ * @property string $created_at
+ * @property string $update_at
+ *
+ * @property string $parent_title
  */
 class Category extends \Eloquent
 {
@@ -29,6 +33,15 @@ class Category extends \Eloquent
     protected $fillable = [
         'title',
         'description',
-        'parent_category_id',
+        'parent_id',
     ];
+
+    /**
+     * All products of the category
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function product()
+    {
+        return $this->belongsToMany(Product::class, 'product_category', 'category_id', 'product_id');
+    }
 }

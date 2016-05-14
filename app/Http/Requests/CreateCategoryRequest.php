@@ -25,8 +25,8 @@ class CreateCategoryRequest extends Request
     {
         return [
             'title' => 'required|min:2|max:255',
+            'parent_id' => 'required|min:1',
             'description' => 'string',
-            'parent_category_id' => 'min:1',
         ];
     }
 }

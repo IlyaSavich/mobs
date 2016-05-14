@@ -3,7 +3,7 @@
 namespace App\Http\ViewComposers;
 
 
-use App\Services\CategoryService;
+use App\Repositories\CategoryRepository;
 use Illuminate\View\View;
 
 class CategoryTreeComposer
@@ -18,11 +18,11 @@ class CategoryTreeComposer
      * CategoryTreeComposer constructor.
      * Getting category tree
      *
-     * @param CategoryService $categoryService
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->categoryTree = $categoryService->getMap($categoryService->getCategoryTree());
+        $this->categoryTree = $categoryRepository->getMap();
     }
 
     /**

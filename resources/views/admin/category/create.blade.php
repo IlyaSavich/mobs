@@ -17,7 +17,8 @@
                 <div class="box-body">
                     <div class="input-group input-field{{ $errors->has('title') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-exchange"></i></span>
-                        {!! Form::text('title', old('title'),['class' => 'form-control', 'placeholder' => 'Название']) !!}
+                        {!! Form::text('title', old('title'),['class' => 'form-control',
+                         'placeholder' => 'Название', 'required']) !!}
 
                         @if ($errors->has('title'))
                             <span class="help-block">
@@ -27,8 +28,8 @@
                     </div>
                     <div class="input-group input-field{{ $errors->has('parent_id') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        {!! Form::select('parent_id', $categories, null,
-                        ['class' => 'form-control']) !!}
+                        {!! Form::select('parent_id', $categories, 0,
+                        ['class' => 'form-control', 'required']) !!}
 
                         @if ($errors->has('parent_id'))
                             <span class="help-block">
@@ -48,7 +49,8 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <a href="#" class="btn btn-default">Отменить</a>
+                    <a href="{{ route('category.list') }}" class="btn btn-default">Отменить</a>
+
                     {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}

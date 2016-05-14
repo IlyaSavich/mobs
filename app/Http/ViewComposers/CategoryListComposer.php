@@ -2,7 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Services\CategoryService;
+use App\Repositories\CategoryRepository;
 use Illuminate\View\View;
 
 class CategoryListComposer
@@ -18,11 +18,11 @@ class CategoryListComposer
      * CategoryListComposer constructor.
      * In construct storing categories in list
      *
-     * @param CategoryService $categoryService
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->categories = $categoryService->getCategoryDropDownList();
+        $this->categories = $categoryRepository->getCategoryDropDownList();
     }
 
     /**
