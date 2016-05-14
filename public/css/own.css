@@ -18,3 +18,18 @@
 .input-field {
     padding-bottom: 10px;
 }
+
+select.select-category {
+    width: 100%;
+}
+
+.center-img {
+    margin: 5px auto;
+}
+
+.logo-size {
+    max-width: 200px;
+    max-height: 50px;
+    width: auto;
+    height: 40px;
+}

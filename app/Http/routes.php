@@ -16,7 +16,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', ['uses' => 'HomeController@index', 'as' => 'index']);
 
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('admin', ['uses' => 'AdminController@index', 'as' => 'index']);
+        Route::get('admin', ['uses' => 'AdminController@index', 'as' => 'admin']);
         
         Route::get('admin/category', ['uses' => 'CategoryController@index', 'as' => 'category.list']);
         Route::get('admin/category/create', ['uses' => 'CategoryController@create', 
@@ -31,8 +31,26 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'category.delete']);
         
         Route::get('admin/product', ['uses' => 'ProductController@index', 'as' => 'product.list']);
-        Route::get('admin/product/create', ['uses' => 'ProductController@create',
-            'as' => 'product.create']);
+        Route::get('admin/product/create', [
+            'uses' => 'ProductController@create',
+            'as' => 'product.create'
+        ]);
+        Route::post('admin/product/create', [
+            'uses' => 'ProductController@store',
+            'as' => 'product.store'
+        ]);
+        Route::get('admin/product/edit/{id}', [
+            'uses' => 'ProductController@edit',
+            'as' => 'product.edit',
+        ]);
+        Route::post('admin/product/update/{id}', [
+            'uses' => 'ProductController@update',
+            'as' => 'product.update',
+        ]);
+        Route::get('admin/product/delete/{id}', [
+            'uses' => 'ProductController@delete',
+            'as' => 'product.delete',
+        ]);
     });
 
 

@@ -3,11 +3,10 @@
 @section('content')
     <div class="container">
         <div class="login-box">
-            <div class="login-logo login-logo-minim">
+            <div class="login-logo">
                 <a href="{{ route('index') }}">
-                    <span class="logo-mini">
-                        <img src="{{ asset('images/mobs.png') }}" class="img-responsive">
-                    </span>
+                    <img src="{{ asset('images/logo_new.png') }}"
+                         class="center-img img-responsive">
                 </a>
             </div>
             <div class="login-box-body">

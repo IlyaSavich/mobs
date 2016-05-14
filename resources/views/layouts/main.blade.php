@@ -17,16 +17,12 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('css/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/own.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('css/blue.css') }}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="plugins/morris/morris.css">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('css/daterangepicker-bs3.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
 {{--    <link rel="stylesheet" href="{{ asset('css/bootstrap3-wysihtml5.min.css') }}">--}}
 
@@ -60,19 +56,13 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{ asset('js/morris.min.js') }}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
-<!-- jvectormap -->
-<script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('js/jquery.knob.js') }}"></script>
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="{{ asset('js/daterangepicker.js') }}"></script>
-<!-- datepicker -->
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('js/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- Slimscroll -->
@@ -82,7 +72,10 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('js/app.min.js') }}"></script>
 <script src="{{ asset('js/Chart.min.js') }}"></script>
-<script src="{{ asset('js/chart-graph-init.js') }}"></script>
-<script src="{{ asset('js/init_daterange_icheck.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/select2.full.min.js') }}"></script>
+
+<script src="{{ asset('js/init_datatable.js') }}"></script>
 </body>
 </html>

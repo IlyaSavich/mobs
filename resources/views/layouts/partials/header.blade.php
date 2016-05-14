@@ -1,12 +1,16 @@
 <header class="main-header">
     <a href="/" class="logo">
-        <span class="logo-mini">
-            <img src="{{ asset('images/logo_mobs_mini.png') }}" class="img-responsive"></span>
+        <span class="logo-mini center-img">
+            <img src="{{ asset('images/logo_new.png') }}"
+                 class="img-responsive logo-size center-img">
+        </span>
+
         <div class="row">
             <div class="col-md-12 col-xs-12">
-            <span class="logo-lg">
-                <img src="{{ asset('images/mobs.png') }}" class="img-responsive">
-            </span>
+                <span class="center-img">
+                    <img src="{{ asset('images/mobs.png') }}"
+                         class="img-responsive logo-size center-img">
+                </span>
             </div>
         </div>
     </a>

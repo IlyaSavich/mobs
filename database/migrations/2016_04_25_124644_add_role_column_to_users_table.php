@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\UserService;
+use App\Repositories\UserRepository;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -14,7 +14,7 @@ class AddRoleColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('role')->default(UserService::USER_ROLE);
+            $table->boolean('role')->default(UserRepository::USER_ROLE);
         });
     }
 
