@@ -2,27 +2,27 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Repositories\ProductRepository;
+use App\Services\PropertyGroupTypeService;
 use Illuminate\View\View;
 
-class ProductTableDataComposer
+class PropertyGroupTypeComposer
 {
     /**
      * List of all categories
      *
      * @var array
      */
-    protected $productTable;
+    protected $propertyGroupTypes;
 
     /**
      * CategoryListComposer constructor.
      * In construct storing categories in list
      *
-     * @param ProductRepository $productRepository
+     * @param PropertyGroupTypeService $groupTypeService
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(PropertyGroupTypeService $groupTypeService)
     {
-        $this->productTable = $productRepository->getTableData();
+        $this->propertyGroupTypes = $groupTypeService->getPropertyGroupTypes();
     }
 
     /**
@@ -32,6 +32,6 @@ class ProductTableDataComposer
      */
     public function compose(View $view)
     {
-        $view->with('productTable', $this->productTable);
+        $view->with('groupTypes', $this->propertyGroupTypes);
     }
 }

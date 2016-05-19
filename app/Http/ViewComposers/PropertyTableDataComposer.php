@@ -3,9 +3,10 @@
 namespace App\Http\ViewComposers;
 
 use App\Repositories\ProductRepository;
+use App\Repositories\PropertyRepository;
 use Illuminate\View\View;
 
-class ProductTableDataComposer
+class PropertyTableDataComposer
 {
     /**
      * List of all categories
@@ -18,11 +19,11 @@ class ProductTableDataComposer
      * CategoryListComposer constructor.
      * In construct storing categories in list
      *
-     * @param ProductRepository $productRepository
+     * @param PropertyRepository $propertyRepository
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(PropertyRepository $propertyRepository)
     {
-        $this->productTable = $productRepository->getTableData();
+        $this->productTable = $propertyRepository->getTableData();
     }
 
     /**
@@ -32,6 +33,6 @@ class ProductTableDataComposer
      */
     public function compose(View $view)
     {
-        $view->with('productTable', $this->productTable);
+        $view->with('propertyTable', $this->productTable);
     }
 }
