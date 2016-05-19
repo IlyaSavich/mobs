@@ -2,27 +2,27 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Repositories\ProductRepository;
+use App\Services\InputFieldTypeService;
 use Illuminate\View\View;
 
-class ProductTableDataComposer
+class InputFieldTypesComposer
 {
     /**
      * List of all categories
      *
      * @var array
      */
-    protected $productTable;
+    protected $inputFieldTypes;
 
     /**
      * CategoryListComposer constructor.
      * In construct storing categories in list
      *
-     * @param ProductRepository $productRepository
+     * @param InputFieldTypeService $inputFieldTypeService
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(InputFieldTypeService $inputFieldTypeService)
     {
-        $this->productTable = $productRepository->getTableData();
+        $this->inputFieldTypes = $inputFieldTypeService->getInputFieldTypes();
     }
 
     /**
@@ -32,6 +32,6 @@ class ProductTableDataComposer
      */
     public function compose(View $view)
     {
-        $view->with('productTable', $this->productTable);
+        $view->with('inputTypes', $this->inputFieldTypes);
     }
 }

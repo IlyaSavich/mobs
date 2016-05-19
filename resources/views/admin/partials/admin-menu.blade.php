@@ -49,6 +49,17 @@
                     <li><a href="{{ route('product.create') }}"><i class="fa fa-circle-o"></i> + Создать</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-bookmark-o"></i> <span>Свойство</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('property.list') }}"><i class="fa fa-circle-o"></i> Список</a></li>
+                    <li><a href="{{ route('property.create') }}"><i class="fa fa-circle-o"></i> + Создать</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>

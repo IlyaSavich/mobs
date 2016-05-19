@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 class ProductController extends Controller
 {
     /**
-     * Variable is used to work with products: creating, storing, getting methods with database
+     * Variable is used to work with products:
+     * creating, storing, getting methods with database
      * 
      * @var ProductRepository
      */
@@ -41,10 +42,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-//        echo '<pre>';
-//        var_dump(Route::getCurrentRoute()->getName());
-//        die;
-
         return view('admin.product.list');
     }
 

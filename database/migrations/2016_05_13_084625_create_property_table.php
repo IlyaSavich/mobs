@@ -18,6 +18,8 @@ class CreatePropertyTable extends Migration
             $table->string('input_type');
             $table->text('description');
             $table->unsignedInteger('group_type');
+            $table->string('valid_type')->nullable();
+            $table->timestamps();
         });
     }
 

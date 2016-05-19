@@ -159,6 +159,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CategoryServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
+        App\Providers\PropertyServiceProvider::class,
 
     ],
 
