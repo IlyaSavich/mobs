@@ -1,12 +1,7 @@
 <?php
 
 namespace App\Repositories;
-/**
- * Created by PhpStorm.
- * User: Илья
- * Date: 25.04.2016
- * Time: 16:00
- */
+
 class UserRepository
 {
     /**

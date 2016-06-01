@@ -16,6 +16,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property string $update_at
  *
  * @property string $parent_title
+ * @property array $properties_id
  */
 class Category extends \Eloquent
 {
@@ -42,6 +43,18 @@ class Category extends \Eloquent
      */
     public function product()
     {
-        return $this->belongsToMany(Product::class, 'product_category', 'category_id', 'product_id');
+        return $this->belongsToMany(Product::class,
+            'product_category', 'category_id', 'product_id');
+    }
+
+    /**
+     * All category properties
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function property()
+    {
+        return $this->belongsToMany(Property::class,
+            'category_property', 'category_id', 'property_id')->withTimestamps();
     }
 }

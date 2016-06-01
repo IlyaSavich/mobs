@@ -33,3 +33,19 @@ select.select-category {
     width: auto;
     height: 40px;
 }
+
+.product-img {
+    max-width: 300px;
+    max-height: 500px;
+    width: 300px;
+    height: auto;
+}
+
+.none-display {
+     display: none;
+ }
+
+.strut {
+    height: 30px;
+    width: auto;
+}

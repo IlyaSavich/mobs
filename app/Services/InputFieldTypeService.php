@@ -5,26 +5,26 @@ namespace App\Services;
 class InputFieldTypeService
 {
     /**
-     * Array of input types
+     * Array of input types grouped by simple inputs and selecting inputs
      * Uses for properties
      *
      * @var array
      */
     protected $inputFieldTypes = [
-        'text',
-        'textarea',
-        'radio',
-        'checkbox',
-        'select',
-        'multiselect',
-        'reset',
-        'file',
-        'image',
-        'color',
-        'date',
-        'number',
-        'time',
-        'range',
+        1 => [
+            'text',
+            'textarea',
+            'file',
+            'date',
+            'time',
+            'number',
+            'range',
+        ],
+        2 => [
+            'radio',
+            'checkbox',
+            'select',
+        ],
     ];
 
     /**
@@ -35,6 +35,32 @@ class InputFieldTypeService
      */
     public function getInputFieldTypes()
     {
-        return array_combine($this->inputFieldTypes, $this->inputFieldTypes);
+        return $this->combineInputTypes();
+    }
+
+    /**
+     * Getting array of input field types in JSON format
+     * 
+     * @return string
+     */
+    public function getJSONInputTypes()
+    {
+        return json_encode($this->combineInputTypes());
+    }
+
+    /**
+     * Combine array of grouped input types
+     *
+     * @return array
+     */
+    private function combineInputTypes()
+    {
+        $combineInputTypes = [];
+        foreach ($this->inputFieldTypes as $groupKey => $groupInputTypes) {
+            $combineInputTypes[$groupKey] =
+                array_combine($groupInputTypes, $groupInputTypes);
+        }
+
+        return $combineInputTypes;
     }
 }

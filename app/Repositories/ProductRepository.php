@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Models\Admin\Product;
-use App\Models\Admin\ProductCategory;
-use DB;
 
 class ProductRepository
 {
@@ -21,6 +19,9 @@ class ProductRepository
     public function store(CreateProductRequest $request)
     {
         $requestInput = $request->all();
+        echo '<pre>';
+        print_r($requestInput);
+        die;
 
         /* @var Product $product */
         $product = Product::create($requestInput);
@@ -75,7 +76,7 @@ class ProductRepository
      *
      * @return mixed
      */
-    public function update($id, CreateProductRequest $request) // TODO for multiple categories
+    public function update($id, CreateProductRequest $request)
     {
         $requestInput = $request->all();
 
@@ -83,7 +84,9 @@ class ProductRepository
         $product = Product::findOrFail($id);
         $product->update($requestInput);
 
-        return $product->category()->sync($requestInput['categories_id']);
+        $product->category()->sync($requestInput['categories_id']);
+        
+        return $product;
     }
 
     /**

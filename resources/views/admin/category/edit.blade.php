@@ -2,9 +2,9 @@
 
 @section('content')
 
+    {!! Form::open(['class' => '', 'route' => ['category.update', $category->id]]) !!}
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="col-md-6">
 
             @include('errors.list')
 
@@ -19,7 +19,6 @@
                     </div>
                 </div>
 
-                {!! Form::open(['class' => '', 'route' => ['category.update', $category->id]]) !!}
                 <div class="box-body">
                     <div class="input-group input-field{{ $errors->has('title') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-exchange"></i></span>
@@ -53,15 +52,56 @@
                         @endif
                     </div>
                 </div>
-                <div class="box-footer">
-                    <a href="{{ route('category.list') }}" class="btn btn-default">Отменить</a>
+            </div>
+        </div>
 
-                    {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
+        <div class="col-md-6">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Свойства категории</h3>
                 </div>
-                {!! Form::close() !!}
 
+                <div class="box-body">
+                    <table id="property-data-table" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Enable</th>
+                            <th>Title</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($propertyTable as $property)
+                            <tr>
+                                <td>{!! Form::checkbox('property_id[]',
+                                 $property->id,
+                                 in_array($property->id, $category->properties_id)) !!}</td>
+
+                                <td>{{ $property->title }}</td>
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Enable</th>
+                            <th>Title</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{ route('category.list') }}"
+               class="btn btn-warning btn-block">Отменить</a>
+        </div>
+        <div class="col-md-6">
+            {!! Form::submit('Изменить', ['class' => 'btn btn-success btn-block']) !!}
+        </div>
+    </div>
+    {!! Form::close() !!}
 
 @stop

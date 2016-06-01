@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Admin\Category;
+use App\Models\Admin\CategoryProperty;
 use Illuminate\Database\Eloquent\Collection;
+use Response;
 
 class CategoryRepository
 {
@@ -49,6 +51,23 @@ class CategoryRepository
     }
 
     /**
+     * Getting categories with properties
+     *
+     * @param int $id
+     *
+     * @return Category
+     */
+    public function getWithProperties($id)
+    {
+        /* @var Category $category */
+        $category = Category::findOrFail($id);
+
+        $category->properties_id = $category->property()->get()->pluck('id')->toArray();
+
+        return $category;
+    }
+
+    /**
      * Store in database new category
      *
      * @param CreateCategoryRequest $request
@@ -57,7 +76,15 @@ class CategoryRepository
      */
     public function store(CreateCategoryRequest $request)
     {
-        return Category::create($request->all());
+        $requestInput = $request->all();
+
+        /* @var Category $category */
+        $category = Category::create($requestInput);
+        if (array_key_exists('property_id', $requestInput)) {
+            $category->property()->sync($requestInput['property_id']);
+        }
+
+        return $category;
     }
 
     /**
@@ -70,9 +97,14 @@ class CategoryRepository
      */
     public function update($id, CreateCategoryRequest $request)
     {
+        $requestInput = $request->all();
+        /* @var Category $category*/
         $category = Category::findOrFail($id);
 
-        return $category->update($request->all());
+        $category->update($requestInput);
+        $category->property()->sync($requestInput['property_id']);
+
+        return $category;
     }
 
     /**
@@ -119,6 +151,12 @@ class CategoryRepository
         return $this->generateUl($this->getCategoryTree());
     }
 
+    /**
+     * Getting information for table of categories
+     * Setting parent category title
+     * 
+     * @return Collection|static[]
+     */
     public function getTableData()
     {
         $categories = Category::all();
@@ -127,10 +165,26 @@ class CategoryRepository
         foreach ($categories as $category) {
             $parent = $category->parent()->first();
 
-            $category->parent_title = is_null($parent) ? self::ROOT_CATEGORY_TITLE : $parent->title;
+            $category->parent_title = is_null($parent) ? 
+                self::ROOT_CATEGORY_TITLE : $parent->title;
         }
 
         return $categories;
+    }
+
+    /**
+     * Getting all properties of the category
+     * 
+     * @param $id
+     *
+     * @return Collection
+     */
+    public function getProperties($id)
+    {
+        /* @var Category $category */
+        $category = Category::findOrFail($id);
+        
+        return $category->property()->get();
     }
 
     /**

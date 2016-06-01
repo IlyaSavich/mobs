@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\CategoryListComposer;
 use App\Http\ViewComposers\InputFieldTypesComposer;
 use App\Http\ViewComposers\CategoryTableDataComposer;
 use App\Http\ViewComposers\CategoryTreeComposer;
@@ -17,11 +18,13 @@ class CategoryServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(['admin.category.create', 'admin.category.edit',
-            'admin.product.create', 'admin.product.edit'
-        ], InputFieldTypesComposer::class);
+            'admin.product.create', 'admin.product.edit',
+        ], CategoryListComposer::class);
 
         view()->composer(['admin.category.list'], CategoryTreeComposer::class);
-        view()->composer(['admin.category.list'], CategoryTableDataComposer::class);
+        view()->composer(['admin.category.list',
+            'admin.product.create', 'admin.product.edit',
+        ], CategoryTableDataComposer::class);
     }
 
     /**

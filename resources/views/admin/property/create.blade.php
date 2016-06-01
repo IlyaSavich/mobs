@@ -29,9 +29,12 @@
                     <div class="input-group input-field{{ $errors->has('input_type') ?
                      ' has-error' : '' }}">
 
+                        <span class="none-display"
+                              id="input-types">{{ $inputTypesJSON }}</span>
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        {!! Form::select('input_type', $inputTypes, '',
-                        ['class' => 'form-control', 'required']) !!}
+                        {!! Form::select('input_type', $inputTypes[1], '',
+                        ['class' => 'form-control',
+                         'id' => 'property-input-type', 'required']) !!}
 
                         @if ($errors->has('input_type'))
                             <span class="help-block">
@@ -44,7 +47,8 @@
 
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
                         {!! Form::select('group_type', $groupTypes, 1,
-                        ['class' => 'form-control', 'required']) !!}
+                        ['class' => 'form-control',
+                         'id' => 'property-group-type', 'required']) !!}
 
                         @if ($errors->has('group_type'))
                             <span class="help-block">
@@ -65,7 +69,7 @@
                 </div>
                 <div class="box-footer">
                     <a href="#" class="btn btn-default">Отменить</a>
-                    {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
+                    {!! Form::submit('Создать', ['class' => 'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}
 

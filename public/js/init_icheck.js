@@ -5,3 +5,7 @@ $(function () {
         increaseArea: '20%' // optional
     });
 });
+
+$('input[type="checkbox"].minimal').iCheck({
+    checkboxClass: 'icheckbox_minimal-blue'
+});

@@ -9,6 +9,7 @@ use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Response;
 
 class CategoryController extends Controller
 {
@@ -73,12 +74,15 @@ class CategoryController extends Controller
     /**
      * Display edit category form
      *
-     * @param Category $category
+     * @param int $id
      *
      * @return mixed
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
+        /* @var Category $category */
+        $category = $this->categoryRepository->getWithProperties($id);
+        
         return view('admin.category.edit', compact('category'));
     }
 
@@ -111,5 +115,20 @@ class CategoryController extends Controller
         $this->categoryRepository->delete($id);
 
         return redirect()->route('category.list');
+    }
+
+    /**
+     * Getting all category properties
+     * Return in JSON
+     * 
+     * @param $id
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function properties($id)
+    {
+        $properties = $this->categoryRepository->getProperties($id);
+        
+        return Response::json($properties);
     }
 }

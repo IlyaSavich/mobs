@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreatePropertyRequest;
 use App\Models\Admin\Property;
-use App\Providers\ProductServiceProvider;
 
 class PropertyRepository
 {

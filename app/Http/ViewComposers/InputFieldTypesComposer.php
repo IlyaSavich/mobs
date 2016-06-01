@@ -15,6 +15,13 @@ class InputFieldTypesComposer
     protected $inputFieldTypes;
 
     /**
+     * List of input types in JSON
+     * 
+     * @var
+     */
+    protected $inputTypesJSON;
+
+    /**
      * CategoryListComposer constructor.
      * In construct storing categories in list
      *
@@ -23,6 +30,7 @@ class InputFieldTypesComposer
     public function __construct(InputFieldTypeService $inputFieldTypeService)
     {
         $this->inputFieldTypes = $inputFieldTypeService->getInputFieldTypes();
+        $this->inputTypesJSON = $inputFieldTypeService->getJSONInputTypes();
     }
 
     /**
@@ -32,6 +40,9 @@ class InputFieldTypesComposer
      */
     public function compose(View $view)
     {
-        $view->with('inputTypes', $this->inputFieldTypes);
+        $view->with([
+            'inputTypes' => $this->inputFieldTypes,
+            'inputTypesJSON' => $this->inputTypesJSON,
+        ]);
     }
 }

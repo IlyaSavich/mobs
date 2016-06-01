@@ -73,7 +73,7 @@
                 </div>
                 <div class="box-footer">
                     <a href="#" class="btn btn-default">Отменить</a>
-                    {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
+                    {!! Form::submit('Изменить', ['class' => 'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}
 

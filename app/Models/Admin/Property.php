@@ -35,4 +35,15 @@ class Property extends \Eloquent
         'group_type',
         'description',
     ];
+
+    /**
+     * All categories with the property
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function category()
+    {
+        return $this->belongsToMany(Category::class,
+            'category_property', 'property_id', 'category_id');
+    }
 }

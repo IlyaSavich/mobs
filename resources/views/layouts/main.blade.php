@@ -63,6 +63,7 @@
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
+<script src="{{ asset('js/helpers.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('js/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- Slimscroll -->
@@ -75,7 +76,9 @@
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/select2.full.min.js') }}"></script>
+{{--<script src="{{ asset('js/icheck.min.js') }}"></script>--}}
 
 <script src="{{ asset('js/init_datatable.js') }}"></script>
+<script src="{{ asset('js/init_icheck.js') }}"></script>
 </body>
 </html>

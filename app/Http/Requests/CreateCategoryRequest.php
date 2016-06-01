@@ -27,6 +27,7 @@ class CreateCategoryRequest extends Request
             'title' => 'required|min:2|max:255',
             'parent_id' => 'required|min:1',
             'description' => 'string',
+            'property_id' => 'array',
         ];
     }
 }

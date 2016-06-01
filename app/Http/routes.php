@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'CategoryController@store',
                 'as' => 'category.store',
             ]);
-            Route::get('edit/{category}', [
+            Route::get('edit/{id}', [
                 'uses' => 'CategoryController@edit',
                 'as' => 'category.edit',
             ]);
@@ -42,6 +42,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('delete/{id}', [
                 'uses' => 'CategoryController@delete',
                 'as' => 'category.delete',
+            ]);
+            Route::get('properties/{id}', [
+                'uses' => 'CategoryController@properties',
+                'as' => 'category.properties',
             ]);
         });
 

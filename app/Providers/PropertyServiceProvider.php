@@ -16,11 +16,13 @@ class PropertyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['admin.property.list'], PropertyTableDataComposer::class);
+        view()->composer(['admin.property.list',
+            'admin.category.create', 'admin.category.edit',
+        ], PropertyTableDataComposer::class);
         
-        view()->composer(['admin.property.create', 'admin.property.edit'],
+        view()->composer(['admin.property.create', 'admin.property.edit',],
             InputFieldTypesComposer::class);
-        view()->composer(['admin.property.create', 'admin.property.edit'],
+        view()->composer(['admin.property.create', 'admin.property.edit',],
             PropertyGroupTypeComposer::class);
     }
 

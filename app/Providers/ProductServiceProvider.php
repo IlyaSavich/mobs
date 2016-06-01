@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\ProductTableDataComposer;
 use Illuminate\Support\ServiceProvider;
 
 class ProductServiceProvider extends ServiceProvider
@@ -13,8 +14,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['admin.product.list'],
-            'App\Http\ViewComposers\ProductTableDataComposer');
+        view()->composer(['admin.product.list'], ProductTableDataComposer::class);
     }
 
     /**
