@@ -3511,7 +3511,7 @@ namespace {
          * Execute the query as a "select" statement.
          *
          * @param array $columns
-         * @return \Illuminate\Database\Eloquent\Collection|static[] 
+         * @return \Illuminate\Database\Eloquent\Collection|static[]|\Kalnoy\Nestedset\Collection
          * @static 
          */
         public static function get($columns = array()){

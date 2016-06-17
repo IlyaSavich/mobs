@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Kalnoy\Nestedset\Collection;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -57,5 +58,17 @@ class Category extends \Eloquent
     {
         return $this->belongsToMany(Property::class,
             'category_property', 'category_id', 'property_id');
+    }
+
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param array $models
+     *
+     * @return Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new Collection($models);
     }
 }

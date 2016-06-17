@@ -32,5 +32,3 @@ $compiledPath = __DIR__ . '/cache/compiled.php';
 if (file_exists($compiledPath)) {
     require $compiledPath;
 }
-
-ini_set('memory_limit', '128M');

@@ -5,8 +5,11 @@
     {!! Form::open(['class' => '', 'route' => ['property.update', $property->id]]) !!}
 
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+
+        <div id="strut" class="col-md-3{{ $property->group_type ==
+         \App\Services\PropertyGroupTypeService::SIMPLE_INPUT_GROUP_TYPE ? '' : ' display-none' }}"></div>
+
+        <div class="col-md-6">
 
             @include('errors.list')
 
@@ -14,7 +17,6 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Новое свойство</h3>
                 </div>
-
                 <div class="box-body">
                     <div class="input-group input-field{{ $errors->has('title') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-exchange"></i></span>
@@ -68,12 +70,40 @@
 
             </div>
         </div>
+
+        <div class="col-md-6{{ $property->group_type ==
+         \App\Services\PropertyGroupTypeService::SIMPLE_INPUT_GROUP_TYPE ? ' display-none' : '' }}"
+             id="possible-inputs-box">
+
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4>Возможные значения</h4>
+                </div>
+                <div class="box-body">
+
+                    @foreach($property->possible_values as $possible_value)
+                        <div class="form-group" id="property-possible-input">
+
+                            {!! Form::text('possible_values[]', $possible_value,
+                             ['class' => 'form-control', 'placeholder' => 'Значение']) !!}
+
+                        </div>
+                    @endforeach
+                </div>
+                <div class="box-footer">
+                    <a href="#" class="btn" onclick="addPossibleInput()">
+                        <i class="fa fa-plus"></i> Добавить
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="row">
         <div class="col-md-4">
             <a href="{{ route('property.delete', $property->id) }}"
-            class="btn btn-danger btn-block">Удалить</a>
+               class="btn btn-danger btn-block">Удалить</a>
         </div>
         <div class="col-md-4">
             <a href="{{ route('property.list') }}" class="btn btn-warning btn-block">Отменить</a>

@@ -76,6 +76,8 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        $property = $this->propertyRepository->withPossibleValues($property);
+        
         return view('admin.property.edit', compact('property'));
     }
 
@@ -83,14 +85,14 @@ class PropertyController extends Controller
      * Updating property
      * Redirect to list of properties
      *
-     * @param $id
+     * @param Property $property
      * @param CreatePropertyRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id, CreatePropertyRequest $request)
+    public function update(Property $property, CreatePropertyRequest $request)
     {
-        $this->propertyRepository->update($id, $request);
+        $this->propertyRepository->update($property, $request);
 
         return redirect()->route('property.list');
     }

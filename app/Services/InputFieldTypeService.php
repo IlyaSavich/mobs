@@ -5,23 +5,13 @@ namespace App\Services;
 class InputFieldTypeService
 {
     /**
-     * Fields that value user must just input
-     */
-    const SIMPLE_INPUT_GROUP_TYPE = 1;
-
-    /**
-     * Fields that values user must choose from proposed
-     */
-    const SELECT_INPUT_GROUP_TYPE = 2;
-
-    /**
      * Array of input types
      * Uses for properties
      *
      * @var array
      */
     protected $inputFieldTypes = [
-        self::SIMPLE_INPUT_GROUP_TYPE => [
+        PropertyGroupTypeService::SIMPLE_INPUT_GROUP_TYPE => [
             'text',
             'textarea',
             'file',
@@ -32,7 +22,7 @@ class InputFieldTypeService
             'range',
         ],
 
-        self::SELECT_INPUT_GROUP_TYPE => [
+        PropertyGroupTypeService::SELECT_INPUT_GROUP_TYPE => [
             'radio',
             'checkbox',
             'select',

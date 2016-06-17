@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     {!! Form::open(['class' => '', 'route' => 'category.store']) !!}
 
     <div class="row">
@@ -84,7 +83,7 @@
                         </tr>
                         </tfoot>
                     </table>
-                </div><!-- /.box-body -->
+                </div>
             </div>
         </div>
     </div>
@@ -99,4 +98,5 @@
     </div>
 
     {!! Form::close() !!}
+
 @stop

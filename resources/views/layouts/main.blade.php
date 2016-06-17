@@ -78,5 +78,6 @@
 
 <script src="{{ asset('js/product-property-table.js') }}"></script>
 <script src="{{ asset('js/init_datatable.js') }}"></script>
+<script src="{{ asset('js/property-possible-values.js') }}"></script>
 </body>
 </html>

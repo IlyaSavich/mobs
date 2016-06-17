@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Admin;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Property
@@ -14,6 +15,8 @@ namespace App\Models\Admin;
  * @property string $valid_type
  * @property string $created_at
  * @property string $updated_at
+ * 
+ * @property array $possible_values
  */
 class Property extends \Eloquent
 {
@@ -45,5 +48,15 @@ class Property extends \Eloquent
     {
         return $this->belongsToMany(Category::class,
             'category_property', 'property_id', 'category_id');
+    }
+
+    /**
+     * All possible values of this property
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Eloquent
+     */
+    public function possible()
+    {
+        return $this->hasMany(PropertyPossibleValues::class, 'property_id');
     }
 }
