@@ -2,9 +2,13 @@
 
 @section('content')
 
+    {!! Form::open(['class' => '', 'route' => 'property.store']) !!}
+
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+
+        {{--<div id="strut" class="col-md-3"></div>--}}
+
+        <div class="col-md-6">
 
             @include('errors.list')
 
@@ -13,7 +17,6 @@
                     <h3 class="box-title">Новое свойство</h3>
                 </div>
 
-                {!! Form::open(['class' => '', 'route' => 'property.store']) !!}
                 <div class="box-body">
                     <div class="input-group input-field{{ $errors->has('title') ? ' has-error' : '' }}">
                         <span class="input-group-addon"><i class="fa fa-exchange"></i></span>
@@ -30,6 +33,7 @@
                      ' has-error' : '' }}">
 
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
+
                         {!! Form::select('input_type', $inputTypes[1], '',
                         ['class' => 'form-control', 'id'=> 'property-input-type', 'required']) !!}
 
@@ -41,11 +45,13 @@
 
                         <div class="display-none" id="property-input-type-json">
                             {{ $inputTypesJSON }}</div>
+
                     </div>
                     <div class="input-group input-field{{ $errors->has('group_type') ?
                      ' has-error' : '' }}">
 
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
+
                         {!! Form::select('group_type', $groupTypes, 0,
                         ['class' => 'form-control', 'id'=> 'property-group-type', 'required']) !!}
 
@@ -66,14 +72,47 @@
                         @endif
                     </div>
                 </div>
-                <div class="box-footer">
-                    <a href="#" class="btn btn-default">Отменить</a>
-                    {!! Form::submit('Отправить', ['class' => 'btn btn-success pull-right']) !!}
-                </div>
-                {!! Form::close() !!}
 
             </div>
         </div>
+
+        <div class="col-md-6 " id="possible-inputs-box">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4>Возможные значения</h4>
+                </div>
+                <div class="box-body">
+                    <div class="input-group" id="property-possible-input">
+
+                        {!! Form::text('possible_values[]', '', ['class' => 'form-control',
+                         'placeholder' => 'Значение']) !!}
+
+                        <span class="input-group-addon bg-red cursor-click"
+                              id="remove-possible-input" onclick="removePossibleInput(this)">
+                            <i class="fa fa-trash-o"></i></span>
+
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <a href="#" class="btn" onclick="addPossibleInput()">
+                        <i class="fa fa-plus"></i> Добавить
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{ route('property.list') }}"
+               class="btn btn-warning btn-block center-block">Отменить</a>
+        </div>
+        <div class="col-md-6">
+            {!! Form::submit('Отправить', ['class' => 'btn btn-success btn-block pull-right center-block']) !!}
+        </div>
+    </div>
+
+    {!! Form::close() !!}
 
 @stop

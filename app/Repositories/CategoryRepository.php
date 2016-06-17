@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Admin\Category;
-use Illuminate\Database\Eloquent\Collection;
+use Kalnoy\Nestedset\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class CategoryRepository
 {
@@ -150,6 +151,7 @@ class CategoryRepository
 
     /**
      * Get category map
+     * Generate tree of categories
      *
      * @return string
      */
@@ -171,7 +173,8 @@ class CategoryRepository
         foreach ($categories as $category) {
             $parent = $category->parent()->first();
 
-            $category->parent_title = is_null($parent) ? self::ROOT_CATEGORY_TITLE : $parent->title;
+            $category->parent_title = is_null($parent) ?
+                self::ROOT_CATEGORY_TITLE : $parent->title;
         }
 
         return $categories;
@@ -194,7 +197,7 @@ class CategoryRepository
 
     /**
      * Getting properties of the category
-     * 
+     *
      * @param Category $category
      *
      * @return Category
@@ -202,7 +205,7 @@ class CategoryRepository
     public function withProperties(Category $category)
     {
         $category->properties_id = $category->property()->get()->pluck('id')->toArray();
-        
+
         return $category;
     }
 
@@ -210,12 +213,12 @@ class CategoryRepository
      * Create <ul> from category tree
      * For each subcategories layout create new <ul>
      *
-     * @param Collection $categories
+     * @param EloquentCollection $categories
      * @param string $out
      *
      * @return string
      */
-    private function generateUl(Collection $categories, $out = '')
+    private function generateUl(EloquentCollection $categories, $out = '')
     {
         $out .= '<ul>';
         foreach ($categories as $category) {

@@ -27,24 +27,6 @@ function addPropertyRows(table, data) {
     });
 }
 
-$('#property-group-type').change(function () {
-    var inputTypes = JSON.parse($('#property-input-type-json').html());
-    changeOptions($("#property-input-type"), inputTypes[$(this).find(":selected").val()]);
-});
-
-function changeOptions(self, options) {
-    var $option;
-
-    self.empty();
-
-    $.each(options, function(index, option) {
-        $option = $("<option></option>")
-            .attr("value", option)
-            .text(index);
-        self.append($option);
-    });
-}
-
 function alertObj(obj) {
     var str = "";
     for(k in obj) {
