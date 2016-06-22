@@ -20,9 +20,13 @@ class ProductRepository
     {
         $requestInput = $request->all();
 
+        echo '<pre>';
+        var_dump($requestInput);
+        die;
+
         /* @var Product $product */
         $product = Product::create($requestInput);
-        $product->categories_id = $requestInput['categories_id'];
+        $product->categories_id = $requestInput['category_id'];
 
         $product->category()->sync($product->categories_id);
 

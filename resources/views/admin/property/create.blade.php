@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="box-footer">
-                    <a href="#" class="btn" onclick="addPossibleInput()">
+                    <a href="#" class="btn" onclick="PossibleValue.addPossibleInput()">
                         <i class="fa fa-plus"></i> Добавить
                     </a>
                 </div>

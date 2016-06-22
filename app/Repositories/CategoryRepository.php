@@ -185,14 +185,18 @@ class CategoryRepository
      *
      * @param $id int Category id
      *
+     * @param PropertyRepository $propertyRepository
+     *
      * @return Collection
      */
-    public function getProperties($id)
+    public function getProperties($id, PropertyRepository $propertyRepository)
     {
         /* @var Category $category */
         $category = Category::findOrFail($id);
 
-        return $category->property()->get();
+        $properties = $propertyRepository->withInputs($category->property()->get());
+        
+        return $properties;
     }
 
     /**

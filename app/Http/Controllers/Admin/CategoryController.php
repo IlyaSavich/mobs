@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Admin\Category;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
+use App\Repositories\PropertyRepository;
 
-use App\Http\Requests;
 
 class CategoryController extends Controller
 {
@@ -118,13 +117,15 @@ class CategoryController extends Controller
 
     /**
      * Return json response of category properties
-     * 
+     *
      * @param $id
+     *
+     * @param PropertyRepository $propertyRepository
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function property($id)
+    public function property($id, PropertyRepository $propertyRepository)
     {
-        return response()->json($this->categoryRepository->getProperties($id));
+        return response()->json($this->categoryRepository->getProperties($id, $propertyRepository));
     }
 }

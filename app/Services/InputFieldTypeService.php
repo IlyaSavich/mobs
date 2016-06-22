@@ -10,7 +10,7 @@ class InputFieldTypeService
      *
      * @var array
      */
-    protected $inputFieldTypes = [
+    public static $inputFieldTypes = [
         PropertyGroupTypeService::SIMPLE_INPUT_GROUP_TYPE => [
             'text',
             'textarea',
@@ -19,11 +19,9 @@ class InputFieldTypeService
             'date',
             'number',
             'time',
-            'range',
         ],
 
         PropertyGroupTypeService::SELECT_INPUT_GROUP_TYPE => [
-            'radio',
             'checkbox',
             'select',
         ],
@@ -39,7 +37,7 @@ class InputFieldTypeService
     
     public function __construct()
     {
-        foreach ($this->inputFieldTypes as $groupType => $group) {
+        foreach (static::$inputFieldTypes as $groupType => $group) {
             $this->inputsCombine[$groupType] = array_combine($group, $group);
         }
     }
@@ -62,5 +60,23 @@ class InputFieldTypeService
     public function getInputFieldTypesJSON()
     {
         return json_encode($this->inputsCombine);
+    }
+
+    /**
+     * Check is the input type is correct
+     * 
+     * @param $input
+     *
+     * @return bool
+     */
+    public function isValid($input)
+    {
+        foreach (static::$inputFieldTypes as $inputFieldType) {
+            if (in_array($input, $inputFieldType)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

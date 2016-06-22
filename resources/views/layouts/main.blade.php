@@ -71,13 +71,14 @@
 <script src="{{ asset('js/fastclick.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/app.min.js') }}"></script>
-<script src="{{ asset('js/Chart.min.js') }}"></script>
+<script src="{{ asset('js/icheck.min.js') }}"></script>
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/select2.full.min.js') }}"></script>
 
 <script src="{{ asset('js/product-property-table.js') }}"></script>
 <script src="{{ asset('js/init_datatable.js') }}"></script>
+<script src="{{ asset('js/init_icheck.js') }}"></script>
 <script src="{{ asset('js/property-possible-values.js') }}"></script>
 </body>
 </html>

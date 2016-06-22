@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Generators\PropertyInput\Factory\PropertyInputFactory;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Models\Admin\Property;
 use App\Services\PropertyGroupTypeService;
+use Illuminate\Database\Eloquent\Collection;
 
 class PropertyRepository
 {
@@ -82,7 +84,54 @@ class PropertyRepository
      */
     public function withPossibleValues(Property $property)
     {
-        $property->possible_values = $this->getArrayOfPossibleValues($property);
+        $property->possible_values = $this->getPossibleValues($property);
+        
+        return $property;
+    }
+
+    /**
+     * Getting possible first possible value of the property.
+     * Used when possibles only one
+     *
+     * @param Property $property
+     *
+     * @return Property
+     */
+    public function withFirstPossibleValue(Property $property)
+    {
+        $property->possible_values = $this->firstPossibleValue($property);
+
+        return $property;
+    }
+
+    /**
+     * Getting input for each property in collection
+     * 
+     * @param Collection $properties
+     *
+     * @return Collection
+     */
+    public function withInputs(Collection $properties)
+    {
+        foreach ($properties as $property) {
+            $this->withInput($property);
+        }
+
+        return $properties;
+    }
+
+    /**
+     * Get input for the property
+     * 
+     * @param Property $property
+     *
+     * @return Property
+     */
+    public function withInput(Property $property)
+    {
+        $generator = PropertyInputFactory::getInstance($property, $this);
+        
+        $property->input = $generator->generate();
 
         return $property;
     }
@@ -94,13 +143,26 @@ class PropertyRepository
      *
      * @return array
      */
-    private function getArrayOfPossibleValues(Property $property)
+    private function getPossibleValues(Property $property)
     {
         return $property->possible()->get()->pluck('value')->toArray();
     }
 
     /**
-     * Make array to using after createMany method
+     * Get first possible value.
+     * Used when possibles only one
+     *
+     * @param Property $property
+     *
+     * @return string
+     */
+    private function firstPossibleValue(Property $property)
+    {
+        return $property->possible()->first()->value;
+    }
+
+    /**
+     * Make array to using in createMany method
      *
      * @param $array
      *
@@ -115,7 +177,7 @@ class PropertyRepository
         return $array;
     }
 
-    private function syncPossible(Property $property, $inputs)
+    private function syncPossible(Property $property, $inputs) // TODO without deleting prev data
     {
         $property->possible()->delete();
         $property->possible()->createMany($this->makeCreatingArray($inputs));

@@ -9,9 +9,6 @@ $('#simple-data-table').DataTable({
 
 $('#product-property-table').DataTable({
     "paging": true,
-    "language": {
-        "url": "cdn.datatables.net/plug-ins/1.10.11/i18n/Russian.json"
-    },
     "lengthChange": true,
     "searching": true,
     "ordering": true,

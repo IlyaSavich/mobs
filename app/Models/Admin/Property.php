@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * 
  * @property array $possible_values
+ * @property string $input
  */
 class Property extends \Eloquent
 {

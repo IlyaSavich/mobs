@@ -2,6 +2,14 @@
 
 namespace App\Models\Admin;
 
+/**
+ * Class PropertyPossibleValues
+ * @package App\Models\Admin
+ * 
+ * @property int $id
+ * @property int $property_id
+ * @property string value
+ */
 class PropertyPossibleValues extends \Eloquent
 {
     /**

@@ -1,29 +1,34 @@
-var possibleInput = $('#property-possible-input')[0].outerHTML;
-var minPossibleInputQuantity = 1;
-var possibleInputQuantity = minPossibleInputQuantity;
+var possible = new PossibleValue();
 
-var PossibleValue = function () {};
-
-PossibleValue.prototype.init = function () {
-
-};
-
-function addPossibleInput() {
-    input.after(possibleInput);
+function PossibleValue() {
+    this.init();
 }
 
-$('#property-group-type').change(function () {
-    var inputTypes = JSON.parse($('#property-input-type-json').html());
-    var groupType = $(this).find(":selected").val();
-    if (groupType == 2) {
-        showPossible();
-    } else if (groupType == 1) {
-        hidePossible();
-    }
-    changeOptions($("#property-input-type"), inputTypes[groupType]);
-});
+PossibleValue.prototype.init = function () {
+    this.possibleInput = $('#property-possible-input')[0].outerHTML;
+    this.minPossibleInputQuantity = 1;
+    this.possibleInputQuantity = this.minPossibleInputQuantity;
 
-function changeOptions(self, options) {
+    var self = this;
+    $('#property-group-type').change(function () {
+        var inputTypes = JSON.parse($('#property-input-type-json').html());
+        var groupType = $(this).find(":selected").val();
+
+        if (groupType == 2) {
+            self.showPossible();
+        } else if (groupType == 1) {
+            self.hidePossible();
+        }
+
+        self.changeOptions($("#property-input-type"), inputTypes[groupType]);
+    });
+};
+
+PossibleValue.prototype.addPossibleInput = function () {
+    this.possibleInput.after(this.possibleInput);
+};
+
+PossibleValue.prototype.changeOptions = function(self, options) {
     var $option;
 
     self.empty();
@@ -34,20 +39,20 @@ function changeOptions(self, options) {
             .text(index);
         self.append($option);
     });
-}
+};
 
-function showPossible() {
+PossibleValue.prototype.showPossible = function() {
     $('#strut').hide();
     $('#possible-inputs-box').show();
-}
+};
 
-function hidePossible() {
+PossibleValue.prototype.hidePossible = function() {
     $('#strut').show();
     $('#possible-inputs-box').hide();
-}
+};
 
-function removePossibleInput(object) {
-    // if (possibleInputQuantity > minPossibleInputQuantity) {
+PossibleValue.prototype.removePossibleInput = function(object) {
+    if (this.possibleInputQuantity > this.minPossibleInputQuantity) {
         $(object).parent().remove();
-    // }
-}
+    }
+};

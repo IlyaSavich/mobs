@@ -15,12 +15,13 @@ $('.product-category-check').change(function () {
 });
 
 function addPropertyRows(table, data) {
+    console.log(data);
     $.each(data, function (key, value) {
 
         var rowNode = table.row.add([
             '<input type="checkbox" value="' + value.id + '" name="property_id[]">',
             value.title,
-            '<input type="' + value.input_type + '">'
+            value.input
         ]).draw().node();
 
         $(rowNode).attr('category_id', value.pivot.category_id);
